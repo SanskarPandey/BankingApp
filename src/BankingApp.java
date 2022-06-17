@@ -1,28 +1,28 @@
 import java.util.Scanner;
 class BankDetails {
-    private String accountno;
-    private String name;
-    private String acc_type;
-    private long balance;
+    private String Accountno;
+    private String Name;
+    private String Account Type;
+    private long Balance;
     Scanner sc = new Scanner(System.in);
 
     //Method to open new account at the bank
     public void openAccount() {
         System.out.print("Enter Your Account No: ");
-        accountno= sc.next();
+        Accountno= sc.next();
         System.out.print("Enter Your Account type: ");
-        acc_type = sc.next();
+        Account Type = sc.next();
         System.out.print("Enter Your Name: ");
-        name = sc.next();
+        Name = sc.next();
         System.out.print("Enter The Existing Balance Of Your Account: ");
-        balance = sc.nextLong();
+        Balance = sc.nextLong();
     }
 
     //Method to display account details relevant to requirement
     public void showAccount() {
-        System.out.println("Name of account holder: " + name);
-        System.out.println("Account no.: " + accountno);
-        System.out.println("Account type: " + acc_type);
+        System.out.println("Name of account holder: " + Name);
+        System.out.println("Account no.: " + Accountno);
+        System.out.println("Account type: " + Account Type);
         System.out.println("Balance: " + balance);
     }
 
@@ -31,7 +31,7 @@ class BankDetails {
         long amt;
         System.out.println("Enter the amount you want to deposit: ");
         amt = sc.nextLong();
-        balance = balance + amt;
+        Balance = Balance + amt;
     }
 
     //Method to withdraw money from account
@@ -39,17 +39,17 @@ class BankDetails {
         long amt;
         System.out.println("Enter the amount you want to withdraw: ");
         amt = sc.nextLong();
-        if (balance >= amt) {
-            balance = balance - amt;
-            System.out.println("Balance after withdrawal: " + balance);
+        if (Balance >= amt) {
+            Balance = Balance - amt;
+            System.out.println("Balance after withdrawal: " + Balance);
         } else {
-            System.out.println("Your balance is less than " + amt + "\tTransaction failed...!!");
+            System.out.println("Your balance is less than the given amount entered i.e," + amt + "\tTransaction Unsucessful!!");
         }
     }
 
-    //method to search an account number
+    //Method to search an account number being entered by the user
     public boolean search(String ac_no) {
-        if (accountno.equals(ac_no)) {
+        if (Accountno.equals(ac_no)) {
             showAccount();
             return (true);
         } else {
@@ -65,74 +65,74 @@ public class BankingApp{
         //create initial accounts
         System.out.print("How many number of customers do you want to input? ");
         int n = sc.nextInt();
-        BankDetails C[] = new BankDetails[n];
-        for (int i = 0; i < C.length; i++) {
-            C[i] = new BankDetails();
-            C[i].openAccount();
+        BankDetails S[] = new BankDetails[n];
+        for (int i = 0; i < S.length; i++) {
+            S[i] = new BankDetails();
+            S[i].openAccount();
         }
-        // loop runs until number 5 is not pressed to exit
-        int ch;
+        
+        int A;
         do {
-            System.out.println("\n ***Banking System Application***");
+            
             System.out.println("1. Display all account details \n 2. Search by Account number\n 3. Deposit the amount \n 4. Withdraw the amount \n 5.Exit ");
             System.out.println("Enter your required activity: ");
-            ch = sc.nextInt();
-            switch (ch) {
+            A = sc.nextInt();
+            switch (A) {
                 case 1:
-                    for (int i = 0; i < C.length; i++) {
-                        C[i].showAccount();
+                    for (int i = 0; i < S.length; i++) {
+                        S[i].showAccount();
                     }
                     break;
                 case 2:
                     System.out.print("Enter account no. you want to search: ");
                     String ac_no = sc.next();
                     boolean found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                    for (int i = 0; i < S.length; i++) {
+                        found = S[i].search(ac_no);
                         if (found) {
                             break;
                         }
                     }
                     if (!found) {
-                        System.out.println("Search failed! Account doesn't exist..!!");
+                        System.out.println("Search failed! Account doesn't exist");
                     }
                     break;
                 case 3:
                     System.out.print("Enter Account no. : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                    for (int i = 0; i < S.length; i++) {
+                        found = S[i].search(ac_no);
                         if (found) {
                             C[i].deposit();
                             break;
                         }
                     }
                     if (!found) {
-                        System.out.println("Search failed! Account doesn't exist..!!");
+                        System.out.println("Search failed! Account doesn't exist");
                     }
                     break;
                 case 4:
                     System.out.print("Enter Account No : ");
                     ac_no = sc.next();
                     found = false;
-                    for (int i = 0; i < C.length; i++) {
-                        found = C[i].search(ac_no);
+                    for (int i = 0; i < S.length; i++) {
+                        found = S[i].search(ac_no);
                         if (found) {
-                            C[i].withdrawal();
+                            S[i].withdrawal();
                             break;
                         }
                     }
                     if (!found) {
-                        System.out.println("Search failed! Account doesn't exist..!!");
+                        System.out.println("Search failed! Account doesn't exist");
                     }
                     break;
                 case 5:
-                    System.out.println("See you soon...");
+                    System.out.println("Exit");
                     break;
             }
         }
-        while (ch != 5);
+        while (A != 5);
     }
 }
 
