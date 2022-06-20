@@ -23,7 +23,7 @@ class BankDetails {
         System.out.println("Name of account holder: " + Name);
         System.out.println("Account no.: " + Accountno);
         System.out.println("Account type: " + Account Type);
-        System.out.println("Balance: " + balance);
+        System.out.println("Balance: " + Balance);
     }
 
     //Method to deposit money at account
